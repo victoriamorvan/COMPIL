@@ -1,15 +1,18 @@
-package ATC;
+package Stitch;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Test_ATC {
+import ATC.ATC;
+import ATC.ATC_Parser;
+
+public class Test_Stitch {
 	public static void main(String[] args) throws IOException {
-		    
+	    
 	     
-	     String dbPath = "/home/depot/2A/gmd/projet_2016-17/atc/br08303.keg";
+	     String dbPath = "/home/depot/2A/gmd/projet_2016-17/stitch/chemical.sources.v5.0.tsv";//"./drugbank.txt";
 
 	    
 	 
@@ -18,13 +21,14 @@ public class Test_ATC {
 	       System.out.println("the db file '" +dbPath+ "' does not exist or is not readable, please check the path");
 	       System.exit(1);
 	     }
-	    ATC_Parser atc= new ATC_Parser();
+	    Stitch_Parser stitch= new Stitch_Parser();
 	    
-	    LinkedList<ATC>list=atc.ATC_Parser_remp(dbFile);
-	    Scanner sc = new Scanner(System.in);
+	    LinkedList<Stitch>list=stitch.Stitch_remp(dbFile);
+	   /* Scanner sc = new Scanner(System.in);
 	    System.out.println("Veuillez saisir un mot :");
 	    String str = sc.nextLine();
 	    System.out.println("Vous avez saisi : " + str);
-	    atc.search(list,str);
- }
+	    stitch.search(list,str);*/
+}
+
 }

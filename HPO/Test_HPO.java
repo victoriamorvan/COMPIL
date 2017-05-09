@@ -2,6 +2,8 @@ package HPO;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -9,10 +11,10 @@ import ATC.ATC;
 import ATC.ATC_Parser;
 
 public class Test_HPO {
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, SQLException {
 	    
-	     
-	     String dbPath = "C:/Users/Victoria/Documents/test_hpo.obo";//"./drugbank.txt";
+	     /*
+	     String dbPath = "/home/depot/2A/gmd/projet_2016-17/hpo/hp.obo";//"./drugbank.txt";
 
 	    
 	 
@@ -29,5 +31,12 @@ public class Test_HPO {
 	    String str = sc.nextLine();
 	    System.out.println("Vous avez saisi : " + str);
 	    hpo.search(list,str);
+	    */
+		
+	    BDDHpo_anno bd =new BDDHpo_anno();
+	    ArrayList<String> liste = new ArrayList<String>();
+	    
+	    liste =bd.getHPODiseaseId("HP:0000739");
+	    
 }
 }

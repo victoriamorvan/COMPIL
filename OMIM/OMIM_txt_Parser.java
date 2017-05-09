@@ -75,7 +75,7 @@ public void search(LinkedList<OMIM_txt> list,String symptomes)
 	    		}
 	    		if(line.startsWith("*FIELD* CS")){
 	    			String symptomes="";
-	    			while(!(line=br.readLine()).contentEquals("*FIELD* CN")){
+	    			while(!(line=br.readLine()).contentEquals("*FIELD*")){
 	    				if (line.startsWith(" ") && !line.isEmpty() && !line.endsWith("];")){
 	    					if (!line.endsWith(";")){
 	    						symptomes+=line.substring(3)+";";
@@ -87,7 +87,7 @@ public void search(LinkedList<OMIM_txt> list,String symptomes)
 	    			}
 	    			omim.setSymptomes(symptomes);
 	    			list.add(omim);
-	    			//System.out.println("  "+ symptomes +"\n");
+	    			System.out.println("  "+ symptomes +"\n");
 	    		}
 	    	
 	    		

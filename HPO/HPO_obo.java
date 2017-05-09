@@ -6,12 +6,21 @@ public class HPO_obo {
 	public String nom;
 	public String xref;
 	public String synonyms;
-	public HPO_obo(String id,String nom,String xref){
+	public HPO_obo(String id,String nom,String xref){//,String synonyms){
 		this.id=id;
 		this.nom=nom;
 		this.xref=xref;
+		//this.synonyms=synonyms;
 	}
 	
+	public String getSynonyms() {
+		return synonyms;
+	}
+
+	public void setSynonyms(String synonyms) {
+		this.synonyms = synonyms;
+	}
+
 	public HPO_obo(){}
 	
 	public String getId() {

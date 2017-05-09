@@ -27,7 +27,7 @@ public class OMIM_csv_Parser {
 	 	else 
 	 		System.out.println("No  corresponds to this CS \n ");
 	 }
-		public static LinkedList<OMIM_csv> OMIM_txt_Parser_remp(File file) throws IOException {
+		public static LinkedList<OMIM_csv> OMIM_csv_Parser_remp(File file) throws IOException {
 			 LinkedList<OMIM_csv> list = new LinkedList<OMIM_csv>();
 		     try{    		 
 		    	
@@ -41,10 +41,11 @@ public class OMIM_csv_Parser {
 		    		String [] parts = line.split(",");
 		    		String preferedLabel = parts [1];
 		    		String synonyms =parts[2];
-		    		String cui = parts [5];
-		    		omim = new OMIM_csv(preferedLabel,synonyms,cui);
+		    		String cui = parts[4];
+		    		System.out.println(parts[5]);
+		    		//omim = new OMIM_csv(preferedLabel,synonyms,cui);
 		    		
-		    		list.add(omim);
+		    		//list.add(omim);
 		    	}
 		    	br.close();
 		    	

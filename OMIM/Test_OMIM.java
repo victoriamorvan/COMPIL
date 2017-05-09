@@ -11,7 +11,7 @@ public class Test_OMIM {
 	public static void main(String[] args) throws IOException {
 		    
 	     
-	     String dbPath = "C:/Users/Victoria/Documents/test_omim.txt";//"./drugbank.txt";
+	     String dbPath = "/home/depot/2A/gmd/projet_2016-17/omim/omim.txt";//"./drugbank.txt";
 
 	    
 	 
