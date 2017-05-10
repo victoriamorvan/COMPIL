@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 import ATC.ATC;
 import ATC.ATC_Parser;
+import OMIM.OMIM_txt;
+import OMIM.OMIM_txt_Parser;
 
 public class Test_Stitch {
 	public static void main(String[] args) throws IOException {
@@ -15,20 +17,23 @@ public class Test_Stitch {
 	     String dbPath = "/home/depot/2A/gmd/projet_2016-17/stitch/chemical.sources.v5.0.tsv";//"./drugbank.txt";
 
 	    
-	 
-	     final File dbFile = new File(dbPath);
-	     if (!dbFile.exists()) {
-	       System.out.println("the db file '" +dbPath+ "' does not exist or is not readable, please check the path");
-	       System.exit(1);
-	     }
-	    Stitch_Parser stitch= new Stitch_Parser();
-	    
-	    LinkedList<Stitch>list=stitch.Stitch_remp(dbFile);
-	   /* Scanner sc = new Scanner(System.in);
-	    System.out.println("Veuillez saisir un mot :");
-	    String str = sc.nextLine();
-	    System.out.println("Vous avez saisi : " + str);
-	    stitch.search(list,str);*/
-}
-
+		 Scanner sc = new Scanner(System.in);
+		/* System.out.println("Veuillez entrer un composant:");
+		 String str1 = sc.nextLine();
+		 System.out.println("et un 2eme ");
+		 String str2 = sc.nextLine();
+		 System.out.println("Vous avez saisi : " + str1 + "et "+str2);*/
+		 Stitch_Parser stitch= new Stitch_Parser("CIDm00017676","CIDs00017676",dbPath);
+		 LinkedList<Stitch> list=stitch.getList();
+		 if (list.size()==0){
+			 System.out.println("No dease corresponds to this symptom");
+		 }
+		else {
+			 int i =0;
+			 for (Stitch st: list)
+				 System.out.println(i +". "+st.id_atc+"\n" );
+		 }
+			
+	}
+		 
 }

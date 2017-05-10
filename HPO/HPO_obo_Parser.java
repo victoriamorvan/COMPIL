@@ -10,26 +10,55 @@ import OMIM.OMIM_txt;
 
 public class HPO_obo_Parser {
 	
-	public void search(LinkedList<HPO_obo> list,String hp)
-	 {
-		
-		
-	 String ret="";
-	 for(HPO_obo hpo:list )
-	     {
-	    	 		if(hpo.getId().equals(hp)){
-	    	 			
-	    	 			ret=hpo.getXref();
-	    	 		}    
+	public String hp;
+	public LinkedList<HPO_obo> list;
+	public String dbPath;
+	
+	public HPO_obo_Parser( String hp, String dbPath) throws IOException{
+		this.hp=hp;
+		this.dbPath=dbPath;
+		final File dbFile = new File(dbPath);
+	     if (!dbFile.exists()) {
+	       System.out.println("the db file '" +dbPath+ "' does not exist or is not readable, please check the path");
+	       System.exit(1);
 	     }
-	 	if(!ret.equals("")){
-	 		System.out.println("This id corresponds to "+ret+"\n");
-	 	}
-	 	else 
-	 		System.out.println("No corresponding xref for this id \n ");
-	 
-	 }
-	public static LinkedList<HPO_obo> HPO_obo_remp(File file) throws IOException {
+	     this.list= HPO_obo_remp(dbFile,hp);
+	     
+		
+	}
+	
+	
+	public String getHp() {
+		return hp;
+	}
+
+
+	public void setHp(String hp) {
+		this.hp = hp;
+	}
+
+
+	public LinkedList<HPO_obo> getList() {
+		return list;
+	}
+
+
+	public void setList(LinkedList<HPO_obo> list) {
+		this.list = list;
+	}
+
+
+	public String getDbPath() {
+		return dbPath;
+	}
+
+
+	public void setDbPath(String dbPath) {
+		this.dbPath = dbPath;
+	}
+
+
+	public static LinkedList<HPO_obo> HPO_obo_remp(File file,String hp) throws IOException {
 			 LinkedList<HPO_obo> list = new LinkedList<HPO_obo>();
 		     try{    		 
 		    	
@@ -53,7 +82,7 @@ public class HPO_obo_Parser {
 		    			
 		    			
 		    		}
-		    		if (line.startsWith("xref: UMLS:")){
+		    		if (line.startsWith("xref: UMLS:")&& hpo.getId().equals(hp)){	
 		    			String xref= line.substring(11);
 		    			hpo.setXref(xref);
 		    			list.add(hpo);

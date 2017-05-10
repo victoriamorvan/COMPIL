@@ -24,7 +24,7 @@ import HPO.HPO_obo_Parser;
 public class Application {
 	public static void main(String[] args) throws IOException, SQLException {
 	    
-	     /*ATC
+		/*ATC
 	     String dbPathATC = "/home/depot/2A/gmd/projet_2016-17/atc/br08303.keg";
 	     final File dbFileATC = new File(dbPathATC);
 	     if (!dbFileATC.exists()) {
@@ -65,7 +65,7 @@ public class Application {
 	    OMIM_csv_Parser OMIM_csv= new OMIM_csv_Parser();  
 	    LinkedList<OMIM_csv>listOMIM_csv=OMIM_csv.OMIM_csv_Parser_remp(dbFileOMIM_csv);*/
 	    //OMIM_txt
-	     String dbPathOMIM_txt = "/home/depot/2A/gmd/projet_2016-17/omim/omim.txt";
+	     /*String dbPathOMIM_txt = "/home/depot/2A/gmd/projet_2016-17/omim/omim.txt";
 	     final File dbFileOMIM_txt = new File(dbPathOMIM_txt);
 	     if (!dbFileOMIM_txt.exists()) {
 	       System.out.println("the db file '" +dbPathOMIM_txt+ "' does not exist or is not readable, please check the path");
@@ -78,10 +78,29 @@ public class Application {
 	     BDDSider bdd = new BDDSider();
 	     ArrayList<Medra_Result> Liste = new ArrayList<Medra_Result>();
 	    */
-	    Scanner sc = new Scanner(System.in);
-	    System.out.println("Veuillez entrer un symptome :");
-	    String str = sc.nextLine();
-	    System.out.println("Vous avez saisi : " + str);
+		 	String dbPathStitch = "/home/depot/2A/gmd/projet_2016-17/stitch/chemical.sources.v5.0.tsv";
+		 	Scanner sc = new Scanner(System.in);
+			/*System.out.println("Veuillez entrer un composant:");
+			String str1 = sc.nextLine();
+			System.out.println("et un 2eme ");
+			String str2 = sc.nextLine();
+			System.out.println("Vous avez saisi : " + str1 + "et "+str2);*/
+			Stitch_Parser stitch= new Stitch_Parser("CIDm00017676","CIDs00017676",dbPathStitch);
+			LinkedList<Stitch> list=stitch.getList();
+			if (list.size()==0){
+				 System.out.println("No dease corresponds to this symptom");
+			 }
+			else {
+				 int i =0;
+				 for (Stitch st: list){
+					 String dbPathATC = "/home/depot/2A/gmd/projet_2016-17/atc/br08303.keg";
+					 ATC_Parser pars = new ATC_Parser(st.id_atc,dbPathATC);
+				 	 System.out.println("1"+pars.getList().get(0).getName());
+					 
+			 }
+			}
+				
+	    
 	    //Liste =bdd.getSiderCUIinMedraSe(str);
 }
 }

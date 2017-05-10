@@ -9,22 +9,10 @@ public class Test_ATC {
 	public static void main(String[] args) throws IOException {
 		    
 	     
-	     String dbPath = "/home/depot/2A/gmd/projet_2016-17/atc/br08303.keg";
-
+	     String dbPath = "/home/depot/2A/gmd/projet_2016-17/atc/br08303.keg";;
+	     String id ="A01AA02";
+	     ATC_Parser pars = new ATC_Parser(id,dbPath);
+	     System.out.println("1"+pars.getList().get(0).getName());
 	    
-	 
-	     final File dbFile = new File(dbPath);
-	     if (!dbFile.exists()) {
-	       System.out.println("the db file '" +dbPath+ "' does not exist or is not readable, please check the path");
-	       System.exit(1);
-	     }
-	    ATC_Parser atc= new ATC_Parser();
-	    
-	    LinkedList<ATC>list=atc.ATC_Parser_remp(dbFile);
-	    Scanner sc = new Scanner(System.in);
-	    System.out.println("Veuillez saisir un mot :");
-	    String str = sc.nextLine();
-	    System.out.println("Vous avez saisi : " + str);
-	    atc.search(list,str);
  }
 }
