@@ -20,15 +20,21 @@ public class Test_HPO {
 		 /*System.out.println("Veuillez entrer un symptome :");
 		 String str = sc.nextLine();
 		 System.out.println("Vous avez saisi : " + str);*/
-		 HPO_obo_Parser hpo= new HPO_obo_Parser("0100169",dbPath);
+		 HPO_obo_Parser hpo= new HPO_obo_Parser("Floppy ears");
 		 LinkedList<HPO_obo> list=hpo.getList();
 		 if (list.size()==0){
 			 System.out.println("No UMLS corresponding to this id");
 		 }
 		else {
 			 int i =0;
-			 for (HPO_obo hp: list)
-				 System.out.println(i +". "+hp.xref+"\n" );
+			 for (HPO_obo hp: list){
+				 LinkedList<String> listeNom=hp.getListeNoms();
+				 hp.getId();
+				 for(String nom:listeNom){
+					 System.out.println(listeNom+"\n" );
+					 i++;
+				 }
+			 }
 		 }
 			
 	    /*HPO_obo_Parser hpo= new HPO_obo_Parser();

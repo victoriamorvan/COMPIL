@@ -4,7 +4,7 @@ public class ATC {
 	public String id;
 	public String name;
 		
-	
+	public ATC(){}
 	public ATC(String id, String name){
 		this.id=id;
 		this.name=name;

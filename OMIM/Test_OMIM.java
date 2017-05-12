@@ -11,12 +11,13 @@ public class Test_OMIM {
 	public static void main(String[] args) throws IOException {
 		    
 	     
-	     String dbPath = "/home/depot/2A/gmd/projet_2016-17/omim/omim.txt";//"./drugbank.txt";
+	   /*  String dbPath = "/home/etudiants/martin441u/Bureau/omim.txt";//"./drugbank.txt";
 		 Scanner sc = new Scanner(System.in);
 		/* System.out.println("Veuillez entrer un symptome :");
 		 String str = sc.nextLine();
 		 System.out.println("Vous avez saisi : " + str);*/
-		 OMIM_txt_Parser omim= new OMIM_txt_Parser("Large ears",dbPath);
+		
+		OMIM_txt_Parser omim= new OMIM_txt_Parser("NOOOOOOOOOOOOOOOO","100050");
 		 LinkedList<OMIM_txt> list=omim.getList();
 		 System.out.println("taille "+list.size());
 		 if (list.size()==0){
@@ -26,7 +27,7 @@ public class Test_OMIM {
 			 int i =0;
 			 for (OMIM_txt om: list){
 				 i++;
-				 System.out.println(i +". "+om.getFieldTi()+"\n" );
+				 System.out.println(i +". "+om.getFieldTi()+ " "+ om.getFieldNo()+"\n" );
 			 }
 		 }
 

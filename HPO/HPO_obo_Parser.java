@@ -10,31 +10,31 @@ import OMIM.OMIM_txt;
 
 public class HPO_obo_Parser {
 	
-	public String hp;
+	public String symptome;
 	public LinkedList<HPO_obo> list;
 	public String dbPath;
 	
-	public HPO_obo_Parser( String hp, String dbPath) throws IOException{
-		this.hp=hp;
-		this.dbPath=dbPath;
+	public HPO_obo_Parser( String symptome) throws IOException{
+		this.symptome=symptome;
+		this.dbPath="/home/depot/2A/gmd/projet_2016-17/hpo/hp.obo";
 		final File dbFile = new File(dbPath);
 	     if (!dbFile.exists()) {
 	       System.out.println("the db file '" +dbPath+ "' does not exist or is not readable, please check the path");
 	       System.exit(1);
 	     }
-	     this.list= HPO_obo_remp(dbFile,hp);
+	     this.list= HPO_obo_remp(dbFile,symptome);
 	     
 		
 	}
 	
 	
-	public String getHp() {
-		return hp;
+	public String getSymptome() {
+		return symptome;
 	}
 
 
-	public void setHp(String hp) {
-		this.hp = hp;
+	public void setSymptome(String symptome) {
+		this.symptome = symptome;
 	}
 
 
@@ -56,9 +56,9 @@ public class HPO_obo_Parser {
 	public void setDbPath(String dbPath) {
 		this.dbPath = dbPath;
 	}
+	
 
-
-	public static LinkedList<HPO_obo> HPO_obo_remp(File file,String hp) throws IOException {
+	public static LinkedList<HPO_obo> HPO_obo_remp(File file,String symptome) throws IOException {
 			 LinkedList<HPO_obo> list = new LinkedList<HPO_obo>();
 		     try{    		 
 		    	
@@ -82,19 +82,30 @@ public class HPO_obo_Parser {
 		    			
 		    			
 		    		}
-		    		if (line.startsWith("xref: UMLS:")&& hpo.getId().equals(hp)){	
+		    		if (line.startsWith("xref: UMLS:")){	
 		    			String xref= line.substring(11);
 		    			hpo.setXref(xref);
-		    			list.add(hpo);
-		    		}
-		    		if(line.startsWith("name")){
-		    			String name=line.substring(6);
-		    			hpo.setNom(name);
 		    			
 		    		}
-		    		
-		    		
-		    		
+		    		if(line.startsWith("name") || line.startsWith("synonym")){
+		    			String name="";
+		    			if (line.startsWith("synonym:")){
+		    				
+		    				String m=line.substring(10);
+			    			String [] parts = m.split("\"");
+			    			name= parts[0];
+			    			hpo.getListeNoms().add(name);
+		    			}
+		    			if (line.startsWith("name")){
+		    				name=line.substring(6);
+		    				hpo.setNom(name);
+		    				hpo.getListeNoms().add(name);
+		    			}
+		    			
+		    			if (name.toLowerCase().indexOf(symptome.toLowerCase()) >= 0  && !list.contains(hpo)){
+		    				list.add(hpo);
+		    			}
+		    		}
 		    	}
 		    	br.close();
 		    	

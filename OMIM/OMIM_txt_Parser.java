@@ -11,6 +11,7 @@ public class OMIM_txt_Parser {
 	
 public String symptome;
 public String dbPath;
+public String id;
 public LinkedList<OMIM_txt> list;
 
     public String getSymptome() {
@@ -32,18 +33,20 @@ public void setList(LinkedList<OMIM_txt> list) {
 	this.list = list;
 }
 	public OMIM_txt_Parser(){}
-    public OMIM_txt_Parser(String symptome, String dbPath) throws IOException{
+    public OMIM_txt_Parser(String symptome,String id) throws IOException{
     	this.symptome=symptome;
-    	this.dbPath=dbPath;
+    	this.id=id;
+    	this.dbPath="/home/depot/2A/gmd/projet_2016-17/omim/omim.txt";
     	final File dbFile = new File(dbPath);
 	     if (!dbFile.exists()) {
 	       System.out.println("the db file '" +dbPath+ "' does not exist or is not readable, please check the path");
 	       System.exit(1);
 	     }
-	     this.list= OMIM_txt_Parser_remp(dbFile,symptome);
+	     this.list= OMIM_txt_Parser_remp(dbFile,symptome,id);
     }
 
-	public static LinkedList<OMIM_txt> OMIM_txt_Parser_remp(File file, String sym) throws IOException {
+	public static LinkedList<OMIM_txt> OMIM_txt_Parser_remp(File file, String sym, String id) throws IOException {
+		
 		 LinkedList<OMIM_txt> list = new LinkedList<OMIM_txt>();
 	     try{    		 
 	    	
@@ -61,16 +64,28 @@ public void setList(LinkedList<OMIM_txt> list) {
 	    		}
 	    		if (line.startsWith("*FIELD* NO")){
 	    			String no="";
-	    			
 	    			no=br.readLine();
-	    			
 	    			omim.setFieldNo(no);
+	    			if (no.contains(id) && !list.contains(omim)){
+	    				list.add(omim);
+	    			}
    			
 	    		}
 	    		if(line.startsWith("*FIELD* TI")){
 	    			String ti="";
 	    			ti=br.readLine();
-	    			ti=ti.substring(7);
+	    			if (ti.startsWith(" "))
+	    				ti=ti.substring(7);
+	    			else
+	    				ti=ti.substring(8);
+	    			while(!(line=br.readLine()).contains("*FIELD*")){
+	    			
+	    				ti+=line;
+	    			}
+	    			if(ti.contains(";")){
+	    				String[] parts = ti.split(";");
+	    				ti=parts[0];
+	    			}
 	    			omim.setFieldTi(ti);
 	    		}
 	    		if (line.startsWith("DESCRIPTION")){
@@ -94,12 +109,15 @@ public void setList(LinkedList<OMIM_txt> list) {
 	    						symptomes=line.substring(3,line.length()-1);
 	    				}	
 	    				
-	    				if (sym.equals(symptomes)){
+	    				if (symptomes.toLowerCase().indexOf(sym.toLowerCase()) >= 0 && !list.contains(omim)){
 	    	    			
-		    				omim.setSymptomes(symptomes);
+		    				omim.setSymptomes(symptomes);	
 		    				list.add(omim);
 		    			}	
+	    			
 	    			}
+	    			
+	    			
 	    		}
 	    	
 	    		

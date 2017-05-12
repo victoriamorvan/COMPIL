@@ -17,7 +17,7 @@ public class BDDHpo_anno {
 				Class.forName("org.sqlite.JDBC");
 				System.out.println("Driver O.K.");
 				System.out.println("connexion en cours");
-				this.con = DriverManager.getConnection("jdbc:sqlite:/home/etudiants/bonardot1u/Bureau/ProjetGMD/Projet/bdd/hpo_annotations.sqlite");
+				this.con = DriverManager.getConnection("jdbc:sqlite:/home/etudiants/martin441u/Bureau/GMD/ProjetGMD/hpo/hpo_annotations.sqlite");
 				System.out.println("connexion établie");
 			}
 			catch(ClassNotFoundException e){

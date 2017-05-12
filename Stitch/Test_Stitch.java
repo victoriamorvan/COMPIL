@@ -23,7 +23,7 @@ public class Test_Stitch {
 		 System.out.println("et un 2eme ");
 		 String str2 = sc.nextLine();
 		 System.out.println("Vous avez saisi : " + str1 + "et "+str2);*/
-		 Stitch_Parser stitch= new Stitch_Parser("CIDm00017676","CIDs00017676",dbPath);
+		 Stitch_Parser stitch= new Stitch_Parser("CIDm00017676","CIDs00017676");
 		 LinkedList<Stitch> list=stitch.getList();
 		 if (list.size()==0){
 			 System.out.println("No dease corresponds to this symptom");

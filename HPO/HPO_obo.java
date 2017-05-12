@@ -1,19 +1,33 @@
 package HPO;
 
+import java.util.LinkedList;
+
 public class HPO_obo {
 	
 	public String id;
 	public String nom;
 	public String xref;
-	public String synonyms;
+	public LinkedList<String> listeNoms;
+	
 	public HPO_obo(String id,String nom,String xref){
 		this.id=id;
 		this.nom=nom;
 		this.xref=xref;
+		
 	}
 	
-	public HPO_obo(){}
+	public HPO_obo(){
+		this.listeNoms=new LinkedList<String>();
+	}
 	
+	public LinkedList<String> getListeNoms() {
+		return listeNoms;
+	}
+
+	public void setListeNoms(LinkedList<String> listeNoms) {
+		this.listeNoms = listeNoms;
+	}
+
 	public String getId() {
 		return id;
 	}

@@ -11,8 +11,8 @@ public class Test_ATC {
 	     
 	     String dbPath = "/home/depot/2A/gmd/projet_2016-17/atc/br08303.keg";;
 	     String id ="A01AA02";
-	     ATC_Parser pars = new ATC_Parser(id,dbPath);
-	     System.out.println("1"+pars.getList().get(0).getName());
-	    
+	     ATC_Parser pars = new ATC_Parser(id);
+	     System.out.println("1"+pars.getAtc().getName());
+
  }
 }

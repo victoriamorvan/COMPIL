@@ -16,10 +16,10 @@ public class Stitch_Parser {
 	public LinkedList<Stitch> list;
 	
 	
-	public Stitch_Parser( String coumpound_id_m, String coumpound_id_s, String dbPath) throws IOException{
+	public Stitch_Parser( String coumpound_id_m, String coumpound_id_s) throws IOException{
 		this.coumpound_id_s=coumpound_id_s;
 		this.coumpound_id_m=coumpound_id_m;
-		this.dbPath=dbPath;
+		this.dbPath="/home/depot/2A/gmd/projet_2016-17/stitch/chemical.sources.v5.0.tsv";
 		final File dbFile = new File(dbPath);
 	     if (!dbFile.exists()) {
 	       System.out.println("the db file '" +dbPath+ "' does not exist or is not readable, please check the path");
